@@ -1,28 +1,47 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>MongoDB Telegram Sender</title>
+  <title>MongoDB File Sender</title>
 </head>
 <body>
-  <h2>Search by Name</h2>
-  <form id="form">
-    <input type="text" id="name" placeholder="Enter name..." required />
-    <button type="submit">Send File</button>
+  <h2>Send File to Telegram</h2>
+  <form id="sendForm">
+    <input type="text" id="name" placeholder="Enter file name" required />
+    <button type="submit">Send</button>
   </form>
-  <p id="msg"></p>
+  <p id="result"></p>
+
+  <h2>All Files</h2>
+  <ul id="fileList"></ul>
 
   <script>
-    document.getElementById("form").addEventListener("submit", async (e) => {
+    document.getElementById('sendForm').addEventListener('submit', async (e) => {
       e.preventDefault();
-      const name = document.getElementById("name").value;
-      const res = await fetch("/api/send", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
+      const name = document.getElementById('name').value;
+
+      const res = await fetch('/api/send', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ name })
       });
+
       const data = await res.json();
-      document.getElementById("msg").innerText = data.message || "Something went wrong.";
+      document.getElementById('result').innerText = data.message || data.error;
     });
+
+    async function loadFiles() {
+      const res = await fetch('/api/files');
+      const data = await res.json();
+
+      const list = document.getElementById('fileList');
+      data.forEach(file => {
+        const li = document.createElement('li');
+        li.innerText = `${file.name} → ${file.file_url}`;
+        list.appendChild(li);
+      });
+    }
+
+    loadFiles();
   </script>
 </body>
 </html>
