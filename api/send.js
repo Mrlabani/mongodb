@@ -8,9 +8,9 @@ export default async function handler(req, res) {
   const { name } = req.body;
   if (!name) return res.status(400).json({ message: "Name is required" });
 
-  const MONGO_URI = "your_mongodb_connection_string"; // e.g., MongoDB Atlas URI
-  const DB_NAME = "filedb";
-  const COLLECTION = "files";
+  const MONGODB_URI = "mongodb+srv://mrnoobx:DAZCdTczVWyECi04@cluster0.sedgwxy.mongodb.net/?retryWrites=true&w=majority";
+const DB_NAME = "mrnoobx";
+const COLLECTION = "Files";
 
   const BOT_TOKEN = "your_telegram_bot_token";
   const CHAT_ID = "your_chat_id";
