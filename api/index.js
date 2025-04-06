@@ -3,12 +3,12 @@ import fetch from 'node-fetch';
 import fs from 'fs';
 import path from 'path';
 
-const MONGODB_URI = "your_mongodb_connection_string";
-const DB_NAME = "filedb";
-const COLLECTION = "files";
+const MONGODB_URI = "mongodb+srv://mrnoobx:DAZCdTczVWyECi04@cluster0.sedgwxy.mongodb.net/?retryWrites=true&w=majority";
+const DB_NAME = "mrnoobx";
+const COLLECTION = "Files";
 
-const BOT_TOKEN = "YOUR_TELEGRAM_BOT_TOKEN";
-const CHAT_ID = "YOUR_CHAT_ID";
+const BOT_TOKEN = "8022651374:AAEk16h1v4S1w-TEtRodO4sDmw0N4U-C2Zc";
+const CHAT_ID = "7442532306";
 
 export default async function handler(req, res) {
   if (req.method === "POST") {
