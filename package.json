@@ -1,5 +1,5 @@
 {
-  "name": "mongodb-telegram-vercel",
+  "name": "vercel-mongo-telegram",
   "version": "1.0.0",
   "dependencies": {
     "mongodb": "^5.7.0",
