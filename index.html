@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>MongoDB Telegram File Sender</title>
+</head>
+<body>
+  <h2>Search and Send File</h2>
+  <form id="searchForm">
+    <input type="text" name="name" placeholder="Enter name..." required>
+    <button type="submit">Search & Send</button>
+  </form>
+  <p id="response"></p>
+
+  <script>
+    document.getElementById("searchForm").addEventListener("submit", async function(e) {
+      e.preventDefault();
+      const name = e.target.name.value;
+      const res = await fetch("/api", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name })
+      });
+      const data = await res.json();
+      document.getElementById("response").innerText = data.message || "Done!";
+    });
+  </script>
+</body>
+</html>
